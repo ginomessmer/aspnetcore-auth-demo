@@ -29,6 +29,8 @@ namespace AuthDemo.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // Add authentication schemes
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -60,7 +62,7 @@ namespace AuthDemo.Web
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            app.UseAuthentication(); // Add support for authentication
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
