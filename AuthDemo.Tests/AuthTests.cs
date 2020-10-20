@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AuthDemo.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace AuthDemo.Tests
@@ -15,7 +16,10 @@ namespace AuthDemo.Tests
 
         public AuthTests()
         {
-            _server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
+            _server = new TestServer(new WebHostBuilder()
+                .UseStartup<Startup>()
+                .ConfigureAppConfiguration(builder => builder.AddJsonFile("appsettings.json")));
+
             _client = _server.CreateClient();
         }
 
