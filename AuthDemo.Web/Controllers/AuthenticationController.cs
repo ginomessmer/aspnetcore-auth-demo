@@ -37,6 +37,7 @@ namespace AuthDemo.Web.Controllers
             {
                 Audience = "test",
                 Issuer = "test",
+                Expires = DateTime.UtcNow.AddDays(1),
 
                 Subject = new ClaimsIdentity(new List<Claim>
                 {
