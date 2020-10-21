@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using AuthDemo.Web.Data;
-using Microsoft.AspNetCore.Http;
+﻿using AuthDemo.Web.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace AuthDemo.Web.Controllers
 {
@@ -27,7 +24,7 @@ namespace AuthDemo.Web.Controllers
         [HttpPost("login")]
         public IActionResult PostLogin([FromBody] PostLoginDto dto)
         {
-            if (dto.Username != "test" && dto.Password != "test")
+            if (dto.Username != "test" || dto.Password != "test")
                 return BadRequest("Invalid username or password");
 
 
@@ -35,8 +32,8 @@ namespace AuthDemo.Web.Controllers
 
             var descriptor = new SecurityTokenDescriptor
             {
-                Audience = "test",
-                Issuer = "test",
+                Audience = DemoDefaults.Audience,
+                Issuer = DemoDefaults.Issuer,
                 Expires = DateTime.UtcNow.AddDays(1),
 
                 Subject = new ClaimsIdentity(new List<Claim>

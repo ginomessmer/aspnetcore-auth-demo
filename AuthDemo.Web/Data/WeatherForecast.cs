@@ -1,6 +1,6 @@
 using System;
 
-namespace AuthDemo.Web
+namespace AuthDemo.Web.Data
 {
     public class WeatherForecast
     {

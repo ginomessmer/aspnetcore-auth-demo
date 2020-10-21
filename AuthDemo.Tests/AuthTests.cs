@@ -1,16 +1,13 @@
-using System;
+using AuthDemo.Web;
+using AuthDemo.Web.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using AuthDemo.Web;
-using AuthDemo.Web.Data;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Net.Http.Headers;
 using Xunit;
 
 namespace AuthDemo.Tests
