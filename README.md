@@ -2,12 +2,12 @@
 ![.NET Core](https://github.com/ginomessmer/aspnetcore-auth-demo/workflows/.NET%20Core/badge.svg)
 
 ## Key Takeaways
-- JSON Web Tokens (JWT) are a commonly used technique for HTTP authentication & authorization
+- JSON Web Tokens (JWT) is a commonly used technique for HTTP authentication & authorization
 - A JWT consists of a header, payload and a signature
-- The JWT payload contains the required details of the authenticated subject (such as ID, etc.)
+- The JWT payload contains all the required details of (claims) the authenticated subject (such as their ID, roles, etc.)
 
 ### Validate a JWT
-- The authentication requirements are specified in the `Startup` class:
+- The authentication details are outlined in the `Startup` class:
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -33,7 +33,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-- Add the `[Authorize]` attribute to your controllers or route methods:
+- Apply the `[Authorize]` attribute to your controllers or route methods:
 ```cs
 [ApiController]
 [Route("[controller]")]
@@ -41,8 +41,7 @@ public void ConfigureServices(IServiceCollection services)
 public class WeatherForecastController : ControllerBase { }
 ```
 
-- Done
-- If you want to retrieve the authenticated subject, access the `HttpContext.User` object
+- Access the `HttpContext.User` object if you want to retrieve the authenticated subject
 
 
 ### Issue a JWT
