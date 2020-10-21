@@ -1,10 +1,12 @@
 ﻿using AuthDemo.Web.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -52,5 +54,11 @@ namespace AuthDemo.Web.Controllers
 
             return Ok(jwt);
         }
+
+        [HttpGet("whoami")]
+        [Authorize]
+        public IActionResult GetWhoAmI() =>
+            Ok(HttpContext.User.Claims
+                .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value);
     }
 }
