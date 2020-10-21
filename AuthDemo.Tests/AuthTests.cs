@@ -1,3 +1,4 @@
+using System;
 using AuthDemo.Web;
 using AuthDemo.Web.Data;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,7 @@ using Xunit;
 
 namespace AuthDemo.Tests
 {
-    public class AuthTests
+    public class AuthTests : IDisposable
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
@@ -79,6 +80,12 @@ namespace AuthDemo.Tests
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             return client;
+        }
+
+        public void Dispose()
+        {
+            _server?.Dispose();
+            _client?.Dispose();
         }
     }
 }
