@@ -66,6 +66,19 @@ namespace AuthDemo.Tests
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
+        [Fact]
+        public async Task GetWhoAmI_Authorize_ShouldSucceed()
+        {
+            // Arrange
+            var client = await GetAuthenticatedHttpClientAsync(_client);
+
+            // Act
+            var response = await client.GetStringAsync("/auth/whoami");
+
+            // Assert
+            Assert.Equal(_loginDetails.Username, response);
+        }
+
 
 
         // Helpers
